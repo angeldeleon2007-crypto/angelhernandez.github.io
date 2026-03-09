@@ -1,0 +1,101 @@
+index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Supplement Finder</title>
+
+<style>
+body{
+font-family:Arial;
+text-align:center;
+background:#f4f4f4;
+padding:40px;
+}
+
+input{
+padding:12px;
+width:250px;
+font-size:16px;
+}
+
+button{
+padding:12px 20px;
+font-size:16px;
+background:black;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+.product{
+background:white;
+padding:20px;
+margin:20px;
+border-radius:10px;
+}
+
+a{
+display:inline-block;
+margin-top:10px;
+padding:10px 20px;
+background:#ff0050;
+color:white;
+text-decoration:none;
+border-radius:6px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Supplement Finder</h1>
+<p>Search your fitness goal</p>
+
+<input id="search" placeholder="lose fat / gain muscle">
+<button onclick="buscar()">Search</button>
+
+<div id="resultados"></div>
+
+<script>
+
+const productos = [
+
+{
+nombre:"Fat Burner Supplement",
+keyword:"perder grasa",
+link:"https://www.tiktok.com/t/ZP9dxDqSAwCaQ-QATlp/"
+}
+
+]
+
+function buscar(){
+
+let input = document.getElementById("search").value.toLowerCase()
+
+let resultados = productos.filter(p => p.keyword.includes(input))
+
+let html=""
+
+if(resultados.length===0){
+html="<p>No supplements found</p>"
+}
+
+resultados.forEach(p=>{
+html += `
+<div class="product">
+<h3>${p.nombre}</h3>
+<a href="${p.link}" target="_blank">View on TikTok Shop</a>
+</div>
+`
+})
+
+document.getElementById("resultados").innerHTML = html
+
+}
+
+</script>
+
+</body>
+</html>
